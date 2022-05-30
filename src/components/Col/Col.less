@@ -1,0 +1,73 @@
+@col-prefix-cls: ~'ant-prefix-col';
+// default grid-columns value
+@grid-columns : 24;
+// mixins for grid system
+// ------------------------
+@grid-columns:24;
+.@{col-prefix-cls} {
+    position: relative;
+    // max-width: 100%;
+    // Prevent columns from collapsing when empty
+    min-height: 1px;
+  }
+.loop-grid-columns(@index, @class) when (@index > 0) {
+    .@{col-prefix-cls}@{class}-@{index} {
+        box-sizing: border-box;
+        display: block;
+        flex: 0 0 percentage((@index / @grid-columns));
+        max-width: percentage((@index / @grid-columns));
+    }
+
+    .@{col-prefix-cls}@{class}-push-@{index} {
+        left: percentage((@index / @grid-columns));
+    }
+
+    .@{col-prefix-cls}@{class}-pull-@{index} {
+        right: percentage((@index / @grid-columns));
+    }
+
+    .@{col-prefix-cls}@{class}-offset-@{index} {
+        margin-left: percentage((@index / @grid-columns));
+    }
+
+    .@{col-prefix-cls}@{class}-order-@{index} {
+        order: @index;
+    }
+
+    .loop-grid-columns((@index - 1), @class);
+}
+
+.loop-grid-columns(@index, @class) when (@index =0) {
+    .@{col-prefix-cls}@{class}-@{index} {
+        display: none;
+    }
+
+    .@{col-prefix-cls}-push-@{index} {
+        left: auto;
+    }
+
+    .@{col-prefix-cls}-pull-@{index} {
+        right: auto;
+    }
+
+    .@{col-prefix-cls}@{class}-push-@{index} {
+        left: auto;
+    }
+
+    .@{col-prefix-cls}@{class}-pull-@{index} {
+        right: auto;
+    }
+
+    .@{col-prefix-cls}@{class}-offset-@{index} {
+        margin-left: 0;
+    }
+
+    .@{col-prefix-cls}@{class}-order-@{index} {
+        order: 0;
+    }
+}
+
+.make-grid{
+    .loop-grid-columns(@grid-columns,~"");
+}
+
