@@ -13,7 +13,7 @@ export interface RowProps extends React.HTMLAttributes<HTMLDivElement> {
     align?: RowAligns
     justify?: RowJustify
     prefixCls?: string;
-    direction?: "rtl" | "left";
+    // direction?: "rtl" | "left";
     wrap?: boolean;
 }
 export type Gutter = number 

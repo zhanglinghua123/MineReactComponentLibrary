@@ -4,8 +4,8 @@ import { RowContextState, Gutter, RowProps } from "./type";
 
 import * as React from 'react';
 import classNames from 'classnames';
-import { getPrefixCls } from '../Col/util';
-import "./row.less"
+import { getPrefixCls } from '../../util/prefixcls';
+import "./style/Row.less"
 export const RowContext: Context<RowContextState> = createContext({});
 
 const Row = React.forwardRef<HTMLDivElement, RowProps>((props, ref) => {
@@ -15,7 +15,7 @@ const Row = React.forwardRef<HTMLDivElement, RowProps>((props, ref) => {
         align,
         className,
         style,
-        direction = "left",
+        // direction = "left",
         children,
         gutter = 0,
         wrap = true,
@@ -29,7 +29,7 @@ const Row = React.forwardRef<HTMLDivElement, RowProps>((props, ref) => {
             [`${prefixCls}-no-wrap`]: wrap === false,
             [`${prefixCls}-${justify}`]: justify,
             [`${prefixCls}-${align}`]: align,
-            [`${prefixCls}-rtl`]: direction === 'rtl',
+            // [`${prefixCls}-rtl`]: direction === 'rtl',
         },
         className,
     );

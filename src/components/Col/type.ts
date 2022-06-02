@@ -7,9 +7,6 @@ export interface ColProps {
     order?: ColSpanType;
     // 间隔几个单位
     offset?: ColSpanType;
-    // 左右边框
-    leftPadding?: ColSpanType | string;
-    rightPadding?: ColSpanType | string;
     // push 是让该column 向后移动
     push?: ColSpanType;
     // pull 是让该column 向前移动

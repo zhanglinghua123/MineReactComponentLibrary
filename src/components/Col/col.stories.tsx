@@ -33,10 +33,11 @@ const Template: ComponentStory<typeof Col> = (args) => {
 const Template2: ComponentStory<typeof Col> = (args) => {
     const { span, number = 12, ...others } = args
     console.log(number, span)
-    const COlArray = new Array(number).fill(0).map(() => {
+    const COlArray = new Array(number).fill(0).map((value, index) => {
         return (
             <Col span={span} {...others}>
                 <div style={{
+                    height: index * 20 + 10,
                     backgroundColor: "green"
                 }}>
                     {number}12121test
@@ -75,11 +76,10 @@ MultiRowColumn.args = {
     pull: 1,
     push: 1,
     offset: 1,
-    leftPadding: "10px",
-    rightPadding: "20px",
     className: '',
     number: 192,
 };
+// 用来测试 不是一整行 都被Column撑满的情况
 export const TestTwelveColumn = Template2.bind({})
 TestTwelveColumn.args = {
     span: 2,

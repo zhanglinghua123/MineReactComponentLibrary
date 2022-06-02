@@ -1,9 +1,9 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import { FlexType, ColProps } from "./type"
-import { getPrefixCls } from './util';
+import { getPrefixCls } from '../../util/prefixcls';
 import { RowContext } from "../Row/Row"
-import "./Col.less"
+import "./style/Col.less"
 //  如果flex是数字 则翻译为 如下的东西 代表该col在flex-grow flex-basis 这两个属性都是数字
 function parseFlex(flex: FlexType): string {
     if (typeof flex === 'number') {
