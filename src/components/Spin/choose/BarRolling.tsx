@@ -5,7 +5,6 @@ import { SpinSize } from "../type"
 import "./barrolling.less"
 export type BarRollingProps = {
     SpinColor?: string;
-    // direction?: 'left' | 'rtl';
     size?: SpinSize
 }
 export const BarRolling = (props: BarRollingProps) => {
