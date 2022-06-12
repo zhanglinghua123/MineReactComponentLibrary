@@ -1,2 +1,3 @@
 export { default as Button } from "./Button";
-export { TestIcon } from "./Icon"
+export { Icon } from "./Icon"
+export { Spin, BarRolling, Circle } from "./Spin/index"

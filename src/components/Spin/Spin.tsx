@@ -6,8 +6,8 @@ import { getPrefixCls } from "../../util/prefixcls";
 import "./style/Spin.less"
 // import { MapIntoSpin } from "./util";
 let firstGet: undefined | Boolean
-const Spin = (props: SpinProps) => {
-    const { spinning = true, size = "small", tip, delay, style, className, wrapperClassName, indicator, defaultIndicator, fontBaseSize = "6px", FontColor = "blue" } = props
+export const Spin = (props: SpinProps) => {
+    const { spinning = true, size = "small", tip, delay, style, className, wrapperClassName, indicator, fontBaseSize = "6px", FontColor = "blue" } = props
     const getDelaySpinning = (spinning: boolean, delay: number | undefined) => {
         return spinning || (!spinning && !delay)
     }

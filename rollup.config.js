@@ -16,12 +16,12 @@ export default [
             {
                 file: packageJson.main,
                 format: "cjs",
-                sourcemap: true,
+                // sourcemap: true,
             },
             {
                 file: packageJson.module,
                 format: "esm",
-                sourcemap: true,
+                // sourcemap: true,
             },
         ],
         plugins: [
@@ -31,6 +31,7 @@ export default [
             resolve(),
             commonjs(),
             typescript({
+                // sourceMap:true,
                 tsconfig: "./tsconfig.json",
                 exclude: [
                     // Exclude test files

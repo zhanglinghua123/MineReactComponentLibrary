@@ -6,6 +6,7 @@ import { UpStair } from "./choose/UpStair";
 import { BarRolling } from "./choose/BarRolling";
 import { Circle } from "./choose/CirCle";
 import { Diamond } from "./choose/Diamond";
+import { CirCleLoading } from "./choose/CirCleLoading";
 export default {
     title: "ReactComponentLibrary/Spin",
     component: Spin,
@@ -42,7 +43,6 @@ SpinLoadingUpStair.args = {
     spinning: false,
     delay: 3,
     tip: "BarRolling",
-    defaultIndicator: "BarRolling",
     indicator: <UpStair size="large" direction="left" SpinColor="#ACFCCC"></UpStair>
 }
 export const SpinLoadingBarRolling = Template.bind({})
@@ -52,7 +52,6 @@ SpinLoadingBarRolling.args = {
     spinning: false,
     delay: 3,
     tip: "BarRolling",
-    defaultIndicator: "BarRolling",
     indicator: <BarRolling size="large" SpinColor="#ACFCCC"></BarRolling>
 }
 export const SpinLoadingCirCle = Template.bind({})
@@ -81,6 +80,13 @@ SpinLoadingDiaMond.args = {
     spinning: true,
     delay: 3,
     tip: "BarRolling",
-    defaultIndicator: "BarRolling",
     indicator: <Diamond size="small"></Diamond>
+}
+export const SpinLoadingCirCleLoading = Template.bind({})
+SpinLoadingCirCleLoading.args = {
+    size: 'small',
+    spinning: true,
+    delay: 3,
+    tip: "BarRolling",
+    indicator: <CirCleLoading size="small"></CirCleLoading>
 }

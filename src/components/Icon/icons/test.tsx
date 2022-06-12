@@ -1,10 +1,15 @@
 import React from 'react'
-import logo from '../svg/LeftArrow.svg'
-export const TestIcon = () => {
-    console.log("logo", logo)
-    return (<div style={{
+import { StringMapIntoSVG } from '../util'
 
-    }}>
-        <img src={logo}></img>
-    </div>)
+import "./icon.less"
+export type IconProps = {
+    src?: string,
+}
+export const Icon = (props: IconProps) => {
+    const { src } = props
+    let imgSrc = StringMapIntoSVG(src)
+    console.log(src, imgSrc)
+    return (
+        <img src={imgSrc} className={"my-prefix-icon-img"}></img>
+    )
 }

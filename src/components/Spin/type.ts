@@ -16,7 +16,6 @@ export interface SpinProps {
     FontColor?: string;
     wrapperClassName?: string;
     indicator?: SpinIndicator;
-    defaultIndicator: string
     children?: React.ReactNode;
     // direction?: 'left' | 'rtl';
 }

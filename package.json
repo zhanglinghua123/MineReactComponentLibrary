@@ -3,13 +3,14 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/MineReactComponentLibrary"
   },
-  "version": "0.0.10",
+  "version": "0.0.16",
   "description": "A simple template for a custom React component library",
   "scripts": {
     "rollup": "rollup -c",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "svg":"py ./src/util/generate_svg_index.py"
   },
   "author": "YOUR_NAME",
   "license": "ISC",
@@ -62,6 +63,7 @@
   "files": [
     "dist"
   ],
+  "type": "module",
   "types": "dist/index.d.ts",
   "dependencies": {
     "classnames": "^2.3.1",
