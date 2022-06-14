@@ -1,0 +1,355 @@
+@spin-prefix-cls : ~"my-prefix-button";
+@btn-font-weight : 400;
+@btn-font-size : 14px;
+@btn-border-width:1px;
+@btn-border-style: solid;
+.@{spin-prefix-cls}{
+    // 删除a 标签下面的横线
+    text-decoration: none;
+    // vertical-align: top;
+    margin:0px;
+    &-large{
+        // width : 100px;
+        min-width: 40px;
+        height : 40px;   
+        padding:10px 12px;  
+    }
+    &-middle{
+        // width : 80px;
+        min-width: 30px;
+        height : 32px;
+        padding:6px 9px;  
+    }
+    &-small {
+        min-width: 20px;
+        // width : 60px;
+        height : 24px;
+        padding:3px 6px;  
+    }
+    // padding :10%,10%;
+    position: relative;
+    display: inline-block;
+    font-weight: @btn-font-weight;
+    font-size: @btn-font-size;
+    // 让文字居于一行
+    white-space: nowrap;
+    // 文字居中
+    text-align: center;
+    // 没有背景图片
+    background-image: none;
+    // 边框
+    border: @btn-border-width @btn-border-style transparent;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    touch-action: manipulation;
+    // box-shadow: @btn-shadow;
+    &-primary{
+        background-color:  #1890ff;
+        border-radius: 2px;
+        color : white;
+        // 点击后的显示效果
+        &:focus {
+            background-color: #40a9ff;
+        }
+        &:hover{
+            background-color: #40a9ff;
+        }
+        // 鼠标在当前元素 但是还未松开
+        &:active{
+            background-color: #096dd9;
+        }
+        // #ff4d4f
+        // #ff7875
+        &.@{spin-prefix-cls}-background-ghost{
+            background-color: transparent;
+            color:  #1890ff;
+            border-color:  #1890ff;
+            &:focus{
+                border-color: #40a9ff;
+                color: #40a9ff;
+                background-color: transparent;
+            }
+            &:hover{
+                border-color: #40a9ff;
+                color: #40a9ff;
+                background-color: transparent;
+            }
+            &:active{
+                border-color: #096dd9;
+                color: #096dd9;
+                background-color: transparent;
+            }
+        }
+        &.@{spin-prefix-cls}-dangerous{
+            background-color: #ff4d4f;
+            &:focus{
+                background-color: #ff7875;
+            }
+            &:hover{
+                background-color: #ff7875;
+            }
+            &:active{
+                background-color: #d9363e;
+            }
+        }
+        &.@{spin-prefix-cls}-dangerous.@{spin-prefix-cls}-background-ghost{
+            background-color: transparent;
+            color:  #ff4d4f;
+            border-color:  #ff4d4f;
+            &:focus{
+                border-color: #ff7875;
+                color: #ff7875;
+                background-color: transparent;
+            }
+            &:hover{
+                border-color: #ff7875;
+                color: #ff7875;
+                background-color: transparent;
+            }
+            &:active{
+                border-color: #d9363e;
+                color: #d9363e;
+                background-color: transparent;
+            }
+        }
+        &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: transparent;
+            content: '';
+            border-radius: 2px;
+            opacity: 0;
+            // transition-delay: 0.2s;
+            box-shadow: 0 0 0 6px rgba(0,0,0,0.05);
+            transition:opacity 0.5s ease-in-out;
+        }
+        &:active::after{
+            // box-shadow: none;
+            opacity: 0.6;
+            // box-shadow: 0 0 0 6px rgba(0,0,0,0.05);
+            // transition: 0s;
+        }
+    }
+    &-dashed{
+        background-color: white;
+        border: 1px dashed rgba(0, 0, 0, 0.1);
+        border-radius: 2px;
+        &:hover {
+            color: #40a9ff;
+            border-color: #40a9ff;
+        }
+        &:focus {
+            color: #40a9ff;
+            border-color: #40a9ff;
+        }
+        &:active {
+            color: #096dd9;
+            border-color: #096dd9;
+        }
+        &.@{spin-prefix-cls}-background-ghost{
+            color: white;
+            border-color: white;
+            background-color: transparent;
+            &:hover {
+                color: #40a9ff;
+                border-color: #40a9ff;
+            }
+            &:focus {
+                color: #40a9ff;
+                border-color: #40a9ff;
+            }
+            &:active {
+                color: #096dd9;
+                border-color: #096dd9;
+            }
+        }
+        &.@{spin-prefix-cls}-dangerous{
+            color: #ff4d4f;
+            border-color: #ff4d4f;
+            &:focus{
+                color: #ff7875;
+                border-color: #ff7875;
+            }
+            &:hover{
+                color: #ff7875;
+                border-color: #ff7875;
+            }
+            &:active{
+                color: #d9363e;
+                border-color: #d9363e;
+            }
+        }
+        &.@{spin-prefix-cls}-dangerous.@{spin-prefix-cls}-background-ghost{
+            background-color: transparent;
+        }
+    }
+    &-link{
+        background-color: transparent;
+        color: #40a9ff;
+        border: 0;
+        &:hover {
+            color: #40a9ff;
+        }
+        &:focus {
+            color: #40a9ff;
+        }
+        &:active {
+            color: #096dd9;
+        }
+        &.@{spin-prefix-cls}-dangerous{
+            color: #ff4d4f;
+            &:focus{
+                color: #ff7875;
+            }
+            &:hover{
+                color: #ff7875;
+            }
+            &:active{
+                color: #d9363e;
+            }
+        }
+    }
+    &-text{
+        border: 0;
+        background-color: transparent;
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+        &:focus {
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+        &.@{spin-prefix-cls}-dangerous{
+            color: #ff4d4f;
+            &:focus{
+                color: #ff7875;
+            }
+            &:hover{
+                color: #ff7875;
+            }
+            &:active{
+                color: #d9363e;
+            }
+        }
+    }
+    &-default{
+        background-color: white;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 2px;
+        &:hover {
+            color: #40a9ff;
+            border-color: #40a9ff;
+        }
+        &:focus {
+            color: #40a9ff;
+            border-color: #40a9ff;
+        }
+        &:active {
+            color: #096dd9;
+            border-color: #096dd9;
+        }
+        &.@{spin-prefix-cls}-background-ghost{
+            color: white;
+            border-color: white;
+            background-color: transparent;
+            &:hover {
+                color: #40a9ff;
+                border-color: #40a9ff;
+            }
+            &:focus {
+                color: #40a9ff;
+                border-color: #40a9ff;
+            }
+            &:active {
+                color: #096dd9;
+                border-color: #096dd9;
+            }
+        }
+        &.@{spin-prefix-cls}-dangerous{
+            background: white;
+            color: #ff4d4f;
+            border-color: #ff4d4f;
+            &:focus{
+                color: #ff7875;
+                border-color: #ff7875;
+            }
+            &:hover{
+                color: #ff7875;
+                border-color: #ff7875;
+            }
+            &:active{
+                color: #d9363e;
+                border-color: #d9363e;
+            }
+        }
+        &.@{spin-prefix-cls}-dangerous.@{spin-prefix-cls}-background-ghost{
+            background-color: transparent;
+        }
+    }
+    &-block{
+        width: 100%;
+    }
+    &-circle{
+        border-radius: 100%;
+        // width: auto;
+    }
+    &-round {
+        &.@{spin-prefix-cls}-large{
+            padding-left:18px;
+            padding-right: 18px;
+        }
+        &.@{spin-prefix-cls}-middle{
+            padding-left:13px;
+            padding-right: 13px;
+        }
+        &.@{spin-prefix-cls}-small{
+            padding-left:10px;
+            padding-right: 10px;
+        }
+        border-radius: 40px;
+    }
+    &{
+        .button-disabled(rgba(0, 0, 0, 0.25), #f5f5f5, #d9d9d9)
+    }
+    & > span:last-child{
+        // vertical-align: middle;
+        display: inline-block;
+        box-sizing: border-box;
+        margin-left: 8px;
+        line-height: 1;
+    }
+}
+
+
+.button-disabled(@color; @background; @border) {
+    &[disabled] {
+      cursor:not-allowed;
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        .button-color(@color; @background; @border);
+        text-shadow: none;
+        box-shadow: none;
+      }
+    }
+    &[disabled]&-background-ghost{
+        background-color: transparent;
+        &,
+        &:hover,
+        &:focus,
+        &:active {
+            .button-color(rgba(0, 0, 0, 0.25); null; white);
+        }
+    }
+  }
+// 规定Button颜色
+.button-color(@color; @background; @border) {
+    color: @color;
+    border-color: @border; // a inside Button which only work in Chrome
+    & when not(@background = null) {
+      background: @background;
+    }
+}
