@@ -1,0 +1,114 @@
+@drawer-prefix-cls: ~'my-prefix-drawer';
+@import url("../../../style/constant.less");
+.@{drawer-prefix-cls}-mask{
+    // opacity: 1;
+    // height: 100vh;
+    // z-index: 1000;
+    position: fixed;
+    top:0;
+    right:0;
+    background-color:#00000073;
+    width: 100%;
+    height: 100%;
+    animation:DrawerMask .3s
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+.@{drawer-prefix-cls}-content-wrapper{
+    // z-index: 1000;
+    transition: transform 0.3s;
+    position: fixed;
+    background-color: white;
+    .placement(~"left",~'&');
+    .placement(~"right",~"&");
+    .placement(~"top",~"&");
+    .placement(~"bottom",~"&");
+}
+.@{drawer-prefix-cls}-header{
+    font-weight: 500;
+    font-size: 16px;
+    padding:16px 24px;
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom:1px solid rgba(0, 0, 0, 0.06);
+    .@{drawer-prefix-cls}-title{
+        flex:1;
+        margin-left:8px;
+    }
+}
+.@{drawer-prefix-cls}-close-icon{
+    opacity: 0.5;
+    &:hover{
+        opacity:1;
+    }
+}
+.@{drawer-prefix-cls}-content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    // padding: 24px;
+    overflow: auto;
+}
+.@{drawer-prefix-cls}-body{
+    flex-grow: 1;
+    padding: 24px;
+    line-height: 1.5175;
+    word-wrap: break-word;
+}
+@keyframes DrawerMask {
+    0% {
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.placement(@direction,@className) when(@direction = ~"right") , (@direction = ~"left"){
+    @{className}-@{direction} when (@direction = ~"right"){
+        top : 0;
+        right:0;
+    }
+    @{className}-@{direction} when (@direction = ~"left"){
+        top : 0;
+        left:0;
+    }
+    @{className}-@{direction}{
+        height: 100%;
+    }
+    @{className}-@{direction}@{className}-large{
+        width: 736px;
+    }
+    @{className}-@{direction}@{className}-middle{
+        width: 532px;
+    }
+    @{className}-@{direction}@{className}-small{
+        width:368px;
+    }
+}
+.placement(@direction,@className) when(@direction = ~"bottom") ,(@direction = ~"top"){
+    @{className}-@{direction} when (@direction = ~"top"){
+        top : 0;
+        left: 0;
+    }
+    @{className}-@{direction} when (@direction = ~"bottom"){
+        bottom: 0;
+        left: 0;
+    }
+    @{className}-@{direction}{
+        width:100%;
+    }
+    @{className}-@{direction}@{className}-large{
+        height: 368px;
+    }
+    @{className}-@{direction}@{className}-middle{
+        height: 276px;
+    }
+    @{className}-@{direction}@{className}-small{
+        height:184px;
+    }
+}
