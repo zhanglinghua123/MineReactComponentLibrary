@@ -1,11 +1,11 @@
-import classNames from "classnames";
-import React, { useEffect, useState } from "react";
-import { getPrefixCls } from "../../util/prefixcls";
-import rowStories from "../Row/row.stories";
-import "./style/button.less"
-import { ButtonTypes, ButtonShapes, SizeType } from "./type"
+import classNames from 'classnames';
+import React, { useEffect, useState } from 'react';
+import { getPrefixCls } from '../../util/prefixcls';
+import rowStories from '../Row/row.stories';
+import './style/button.less';
+import { ButtonTypes, ButtonShapes, SizeType } from './type';
 export interface ButtonProps {
-    style?: React.CSSProperties
+    style?: React.CSSProperties;
     // 按钮类型
     type?: ButtonTypes;
     // 可以嵌入的Icon
@@ -27,14 +27,14 @@ export interface ButtonProps {
     ghost?: boolean;
     // 是否为danger按钮
     danger?: boolean;
-    // 宽度是否占据整个div 
+    // 宽度是否占据整个div
     block?: boolean;
     // 是否为Disabled状态
     disabled?: boolean;
     children?: React.ReactNode;
     // a标签的链接
-    href?: string
-    onClick?: () => void
+    href?: string;
+    onClick?: () => void;
 }
 const Button = (props: ButtonProps) => {
     const {
@@ -43,7 +43,7 @@ const Button = (props: ButtonProps) => {
         type = 'default',
         danger,
         shape = 'default',
-        size = "large",
+        size = 'large',
         className,
         children,
         icon,
@@ -55,70 +55,82 @@ const Button = (props: ButtonProps) => {
         ...rest
     } = props;
     // 判断用户输入的延迟信息 并设置对应的加载状态
-    const LoadingDelay = loading === 'object' && loading.delay ? loading.delay || true : !!loading
-    const [Loading, setLoading] = useState(false)
+    const LoadingDelay =
+        typeof loading === 'object' && loading.delay ? loading.delay || true : !!loading;
+    const [Loading, setLoading] = useState<Boolean>(false);
     useEffect(() => {
         let Timer: NodeJS.Timeout | undefined;
-        if (typeof LoadingDelay === "number") {
-            setLoading(true)
+        if (typeof LoadingDelay === 'number') {
+            setLoading(true);
             Timer = setTimeout(() => {
-                setLoading(false)
-            }, LoadingDelay * 1000)
+                setLoading(false);
+            }, LoadingDelay * 1000);
         } else {
-            setLoading(LoadingDelay)
+            setLoading(LoadingDelay);
         }
         return () => {
             if (Timer) {
-                clearTimeout(Timer)
-                Timer = undefined
+                clearTimeout(Timer);
+                Timer = undefined;
             }
-        }
-    }, [LoadingDelay])
-    const [hasTwoCNChar, setHasTwoCNChar] = useState(false)
-    const prefixCls = getPrefixCls("button")
+        };
+    }, [LoadingDelay]);
+    const [hasTwoCNChar, setHasTwoCNChar] = useState(false);
+    const prefixCls = getPrefixCls('button');
     const classes = classNames(
         prefixCls,
         {
             [`${prefixCls}-${shape}`]: shape !== 'default' && shape, // Note: Shape also has `default`
             [`${prefixCls}-${type}`]: type,
             [`${prefixCls}-${size}`]: size,
-            // 
+            //
             [`${prefixCls}-icon-only`]: !children && children !== 0,
-            // 
+            //
             [`${prefixCls}-background-ghost`]: ghost,
-            [`${prefixCls}-loading`]: Loading,
-            // 
+            // [`${prefixCls}-loading`]: Loading,
+            //
             [`${prefixCls}-two-chinese-chars`]: hasTwoCNChar,
             [`${prefixCls}-block`]: block,
             [`${prefixCls}-dangerous`]: !!danger,
         },
-        className,
+        className
     );
-    const Buttonref = React.useRef<HTMLButtonElement & HTMLAnchorElement>(null)
-    useEffect(() => {
-        const childList: React.ReactNode[] = [];
-        console.log("Children ----", React.Children.forEach(children, (child) => {
-            // console.log(typeof child, child)
-            let isPrevChildPure: boolean = false;
-            const type = typeof child;
-            const isCurrentChildPure = type === 'string' || type === 'number';
-            if (isPrevChildPure && isCurrentChildPure) {
-                const lastIndex = childList.length - 1;
-                const lastChild = childList[lastIndex];
-                childList[lastIndex] = `${lastChild}${child}`;
-            } else {
-                childList.push(child);
-            }
+    const Buttonref = React.useRef<HTMLButtonElement & HTMLAnchorElement>(null);
+    let isPrevChildPure: boolean = false;
+    let childList: React.ReactNode[] = [];
+    // 该函数 会将 连续的文本节点合并
+    React.Children.forEach(children, child => {
+        // console.log(typeof child, child)
+        const type = typeof child;
+        const isCurrentChildPure = type === 'string' || type === 'number';
+        if (isPrevChildPure && isCurrentChildPure) {
+            const lastIndex = childList.length - 1;
+            const lastChild = childList[lastIndex];
+            childList[lastIndex] = `${lastChild}${child}`;
+        } else {
+            childList.push(child);
+        }
 
-            isPrevChildPure = isCurrentChildPure;
-        }))
-        console.log("childList ------", childList)
-    }, [])
-    if (rest.href !== undefined && type == "link")
-        return <a className={classes} ref={Buttonref}  {...rest}>{children}</a>
-    return <button style={style} className={classes} ref={Buttonref} disabled={disabled} {...rest}>
-        {children}
-    </button>;
+        isPrevChildPure = isCurrentChildPure;
+    });
+    // 如果子节点数组长度多于1 再进行合并操作
+    childList = childList.map(child => {
+        const type = typeof child;
+        if (type === 'string' || type === 'number') return <span>{child}</span>;
+        else return child;
+    });
+    if (rest.href !== undefined && type == 'link')
+        return (
+            <a className={classes} ref={Buttonref} {...rest}>
+                {children}
+            </a>
+        );
+    return (
+        <button style={style} className={classes} ref={Buttonref} disabled={disabled} {...rest}>
+            {Loading ? <div className="my-prefix-button-loading"></div> : icon}
+            {childList.length != 0 ? childList : <span></span>}
+        </button>
+    );
 };
 
 export default Button;

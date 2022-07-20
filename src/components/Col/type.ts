@@ -15,6 +15,7 @@ export interface ColProps {
     className?: string;
     style?: React.CSSProperties;
     number?: number;
+    children?: React.ReactNode
 }
 
 // https://github.com/ant-design/ant-design/issues/14324

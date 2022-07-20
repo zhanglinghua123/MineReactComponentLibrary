@@ -1,8 +1,13 @@
+// @import url("../../../style/constant.less");
 @spin-prefix-cls : ~"my-prefix-button";
 @btn-font-weight : 400;
 @btn-font-size : 14px;
 @btn-border-width:1px;
 @btn-border-style: solid;
+// 禁用 focus后 esc的 边框
+button:focus{
+    outline: 0;
+}
 .@{spin-prefix-cls}{
     // 删除a 标签下面的横线
     text-decoration: none;
@@ -313,14 +318,32 @@
     &{
         .button-disabled(rgba(0, 0, 0, 0.25), #f5f5f5, #d9d9d9)
     }
-    & > span:last-child{
+    & > span:not(:first-child) {
         // vertical-align: middle;
         display: inline-block;
         box-sizing: border-box;
         margin-left: 8px;
         line-height: 1;
     }
+    &-loading{
+        width:1em;
+        height: 1em;
+        display: inline-block;
+        box-sizing: border-box;
+        border: transparent solid 2px;
+        border-right-color: white;
+        border-radius: 100%;
+        vertical-align: -0.125em;
+        margin-right:8px;
+        animation: Loading infinite 1s linear;
+    }
 }
+@keyframes Loading {
+   
+    100%{
+        transform: rotate(360deg);
+    }
+} 
 
 
 .button-disabled(@color; @background; @border) {

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import classNames from 'classnames';
-import { FlexType, ColProps } from "./type"
+import { FlexType, ColProps } from './type';
 import { getPrefixCls } from '../../util/prefixcls';
-import { RowContext } from "../Row/Row"
-import "./style/Col.less"
+import { RowContext } from '../Row/Row';
+import './style/Col.less';
 //  如果flex是数字 则翻译为 如下的东西 代表该col在flex-grow flex-basis 这两个属性都是数字
 function parseFlex(flex: FlexType): string {
     if (typeof flex === 'number') {
@@ -16,7 +16,7 @@ function parseFlex(flex: FlexType): string {
 
     return flex;
 }
-const Col = React.forwardRef<HTMLDivElement, ColProps>((props, ref) => {
+export const Col = React.forwardRef<HTMLDivElement, ColProps>((props, ref) => {
     const { gutter, wrap } = React.useContext(RowContext);
 
     const {
@@ -37,7 +37,7 @@ const Col = React.forwardRef<HTMLDivElement, ColProps>((props, ref) => {
     //  根据push pull 数值进行调整
 
     const classes = classNames(
-        "make-grid",
+        'make-grid',
         prefixCls,
         {
             [`${prefixCls}-${span}`]: span !== undefined,
@@ -46,7 +46,7 @@ const Col = React.forwardRef<HTMLDivElement, ColProps>((props, ref) => {
             [`${prefixCls}-push-${push}`]: push > pull ? push - pull : 0,
             [`${prefixCls}-pull-${pull}`]: pull > push ? pull - push : 0,
         },
-        className,
+        className
     );
 
     const mergedStyle: React.CSSProperties = {};

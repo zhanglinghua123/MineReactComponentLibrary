@@ -104,6 +104,11 @@ const Template2: ComponentStory<typeof Button> = (args) => {
             <br></br>
             <Button shape="round" type="primary" {...rest}><Icon src="adduser"></Icon>Hello World! 323232
                 ewewe 3232 {Test} {Test}</Button>
+            <br></br>
+            <>Loading Icon</>
+            <br></br>
+            <Button loading shape="round" type="primary" {...rest}><Icon src="adduser"></Icon>Hello World!</Button>
+            <Button loading={{ delay: 3 }} shape="round" type="primary" {...rest}><Icon src="adduser"></Icon>Hello World!</Button>
         </div>
     )
 };
