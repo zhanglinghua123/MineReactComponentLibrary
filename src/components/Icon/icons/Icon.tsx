@@ -8,12 +8,12 @@ export type IconProps = {
     style?: CSSProperties;
 };
 export const Icon = (props: IconProps) => {
-    const { src, size = '1em' } = props;
+    const { src, size = '1em' ,style} = props;
     let imgSrc = StringMapIntoSVG(src);
     return (
         <img
             src={imgSrc}
-            style={{ width: size, height: size }}
+            style={{ width: size, height: size, ...style}}
             className={'my-prefix-icon-img'}
         ></img>
     );

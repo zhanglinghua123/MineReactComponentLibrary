@@ -16,7 +16,7 @@ testicon.args = {
 const Template2: ComponentStory<typeof Icon> = () => {
     return (
         <Row>
-            <Col span={4}><Icon src="closecircle" size="100%"></Icon></Col>
+            <Col span={4}><Icon src="closecircle" size="100%" style={{position:"fixed",left:"200px"}}></Icon></Col>
             <Col span={4}><Icon src="closecirclefill" size="100%"></Icon></Col>
         </Row>
     )
